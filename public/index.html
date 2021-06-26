@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Testing</title>
+    <style>
+      body{
+      background-image: Url('https://backgroundcheckall.com/wp-content/uploads/2018/10/form-background-image-4.jpg');
+      background-position: center;
+      background-size: cover;
+      margin-top: 100px;
+    }
+    .signup{
+      width:600px;
+      background-color: rgb(0,0,0,0.5);
+      margin:auto;
+      text-align: center;
+      color:aliceblue;
+      padding-top:20px;
+      padding-bottom: 20px;
+      border-radius:15px 15px 0px 0px;
+    }
+    form{
+      background-color: rgb(0,0,0,0.3);
+      width:600px;
+      margin:auto;
+      margin-top:-20px;
+      color:aliceblue;
+      border-radius:0px 0px 15px 15px;
+    }
+    .mail{
+      margin-top: 20px;
+      margin-left:70px;
+    }
+    #name{
+      position: relative;
+      left: 200px;
+      top:-55px;
+      line-height: 40px;
+      width:300px;
+      height:50px;
+      border-radius:10px;
+    }
+    #pswd{
+      position:relative;
+      left: 200px;
+      top:-55px;
+      line-height: 100px;
+      height:50px;
+      width:300px;
+      border-radius: 10px;
+    }
+    .button{
+      height:50px;
+      width:100px;
+      background-color:green;
+      color:white;
+      border-radius: 10px;
+      font-size: 20px;
+      margin-left: 500px;
+    }
+    .button:hover{
+      background-color: turquoise;
+      cursor:pointer;
+    }
+    .reset:hover{
+      background-color: turquoise;
+      cursor: pointer;
+    }
+    </style>
+  </head>
+
+  <body>
+    <h2 class="signup">Login Form</h2>
+    <br>
+
+    <form id="form">
+      <br>
+      <br>
+      <h2 class="mail">Username</h2>
+      <input type="text" id="name" placeholder="Enter Username" required />
+      <h2 class="mail">Password</h2>
+      <input type="text" id="pswd" placeholder="Enter Password" required />
+      <button onclick="sendJSON()" class="button">SIGN IN</button>
+      <br>
+      <br>
+    </form>
+
+    <script>
+      function sendJSON(){
+        let result = document.querySelector('.result');
+        let name = document.querySelector('#name');
+        let pswd = document.querySelector('#pswd');
+        
+        var dict = {};
+        dict["Username"] = name.value
+        dict["Password"] = pswd.value
+
+        // Creating a XHR object
+        let xhr = new XMLHttpRequest();
+        let url = "/add";
+        xhr.open("POST", url, true);
+
+        // Set the request header i.e. which type of content you are sending
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+        // Create a state change callback
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === 4 && xhr.status === 200) {
+            alert(http.responseText);
+          }
+        };
+        dict = JSON.stringify(dict)
+        xhr.send("response="+dict);
+      }
+    </script>
+  </body>
+</html>
+
+
+
+<!--<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      Testing
+    </title>
+  </head>
+  
+  <body style="text-align:center;" id="body">
+    <h1 style="color:green;">
+      Telidhu
+    </h1>
+  
+    <p>
+        <input type="text" id="name" placeholder="Enter Username" required />
+        <input type="password" id="pswd" placeholder="Enter Password" required />
+        <button onclick="sendJSON()">Send JSON</button>
+   </p>
+  <script>
+    function sendJSON(){
+			
+			let result = document.querySelector('.result');
+			let name = document.querySelector('#name');
+			let pswd = document.querySelector('#pswd');
+			
+      var btn = [];
+      var dict = {};
+      dict["Username"] = name.value
+      dict["Password"] = pswd.value
+      btn.push(dict);
+
+			// Creating a XHR object
+			let xhr = new XMLHttpRequest();
+			let url = "/add";
+		
+			// open a connection
+			xhr.open("POST", url, true);
+
+			// Set the request header i.e. which type of content you are sending
+			xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+			// Create a state change callback
+			xhr.onreadystatechange = function () {
+				if (xhr.readyState === 4 && xhr.status === 200) {
+					alert(http.responseText);
+				}
+			};
+
+			// Converting JSON data to string
+			//var data = JSON.stringify({ "Username": name.value, "Password": pswd.value });
+      btn = JSON.stringify(btn)
+
+			// Sending data with the request
+			xhr.send("response="+btn);
+		}
+
+  </script>
+  
+  </body>
+</html>-->
